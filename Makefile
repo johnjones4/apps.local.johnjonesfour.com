@@ -1,5 +1,5 @@
 build:
-  rm -rf nginx/public/ || true
+  rm -rf nginx/public/
 	mkdir nginx/public
 	cp -R apps/weather/server/nginx/public nginx/public/weather
 	docker-compose build
