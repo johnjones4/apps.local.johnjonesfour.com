@@ -11,6 +11,13 @@ services:
       - postgres
     ports:
       - "3031:3031"
+  feedpage:
+    restart: always
+    build: ./apps/feedpage/server
+    env_file:
+      - feedpage.env
+    ports:
+      - "8080:8080"
   postgres:
     restart: always
     image: postgres
@@ -26,6 +33,7 @@ services:
     build: ./nginx
     depends_on:
       - weather
+      - feedpage
     ports:
       - "80:80"
     expose:
