@@ -40,5 +40,21 @@ services:
       - "80:80"
     expose:
       - "80"
+  backup:
+    restart: always
+    build: ./backup
+    depends_on:
+      - postgres
+    env_file:
+      - postgres.env
+      - secrets.env
+    volumes:
+      - backup:/backup
 volumes: 
   postgres:
+  backup:
+    driver_opts:
+      type: "nfs"
+      o: "addr=files,nolock,soft,rw"
+      device: ":/mnt/raid1/backup"
+
