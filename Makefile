@@ -23,3 +23,13 @@ db:
 	docker exec -u postgres appslocaljohnjonesfourcom_postgres_1 psql -f /dbs.sql
 	docker exec -u postgres appslocaljohnjonesfourcom_postgres_1 psql weather -f /weather.sql
 	docker-compose stop postgres
+
+push-submodules:
+	cd apps/feedpage && git pull origin master
+	cd apps/weather && git pull origin master
+	git commit -am 'sync submodules'
+	git push origin master
+
+pull:
+	git pull origin master
+	git submodule update --recursive --remote
