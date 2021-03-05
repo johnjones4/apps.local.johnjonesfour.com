@@ -36,6 +36,28 @@ services:
       - feedpage
     ports:
       - "80:80"
+  zabbix-server:
+    image: zabbix/zabbix-server-pgsql:alpine-5.2-latest
+    restart: always
+    depends_on: 
+      - postgres
+    env_file: 
+      - postgres.env
+      - secrets.env
+      - zabbix.env
+    ports:
+      - "10051:10051"
+  zabbix-web:
+    image: zabbix/zabbix-web-nginx-pgsql:alpine-5.2-latest
+    restart: always
+    depends_on: 
+      - postgres
+    env_file: 
+      - postgres.env
+      - secrets.env
+      - zabbix.env
+    ports:
+      - "8081:8080"
   backup:
     restart: always
     build: ./backup
