@@ -19,7 +19,7 @@ services:
       - weather.env
       - postgres.env
       - secrets.env
-      - grill_secrets.env
+      - weather_secrets.env
     depends_on:
       - postgres
     ports:
