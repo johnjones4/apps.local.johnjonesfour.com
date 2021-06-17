@@ -48,6 +48,7 @@ services:
       - weather
       - feedpage
       - zabbix-web
+      - grill
     ports:
       - "80:80"
   zabbix-server:
