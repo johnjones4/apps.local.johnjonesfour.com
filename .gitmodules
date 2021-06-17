@@ -4,3 +4,6 @@
 [submodule "apps/feedpage"]
 	path = apps/feedpage
 	url = git@github.com:johnjones4/FeedPage.git
+[submodule "apps/grill-logger"]
+	path = apps/grill-logger
+	url = git@github.com:johnjones4/grill-logger

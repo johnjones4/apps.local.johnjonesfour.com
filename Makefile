@@ -20,8 +20,10 @@ db:
 	docker cp ./dbs.sql appslocaljohnjonesfourcom_postgres_1:/dbs.sql
 	rm dbs.sql
 	docker cp ./apps/weather/server/schema.sql appslocaljohnjonesfourcom_postgres_1:/weather.sql
+	docker cp ./apps/grill-logger/schema.sql appslocaljohnjonesfourcom_postgres_1:/grill.sql
 	docker exec -u postgres appslocaljohnjonesfourcom_postgres_1 psql -f /dbs.sql
 	docker exec -u postgres appslocaljohnjonesfourcom_postgres_1 psql weather -f /weather.sql
+	docker exec -u postgres appslocaljohnjonesfourcom_postgres_1 psql grill -f /grill.sql
 	docker-compose stop postgres
 
 push-submodules:

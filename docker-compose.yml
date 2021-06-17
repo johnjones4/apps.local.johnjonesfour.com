@@ -1,5 +1,17 @@
 version: "3.9"
 services:
+  grill:
+    restart: always
+    build: ./apps/grill-logger/server
+    env_file:
+      - grill.env
+      - postgres.env
+      - secrets.env
+      - grill_secrets.env
+    depends_on:
+      - postgres
+    ports:
+      - "8090:8090"
   weather:
     restart: always
     build: ./apps/weather/server/api
@@ -7,6 +19,7 @@ services:
       - weather.env
       - postgres.env
       - secrets.env
+      - grill_secrets.env
     depends_on:
       - postgres
     ports:
