@@ -31,6 +31,13 @@ services:
       - feedpage.env
     ports:
       - "8080:8080"
+  doomsday:
+    restart: always
+    build: ./apps/doomsday-machine
+    environment: 
+      - CONFIG_FILE=/configvol/config.yml
+    volumes: 
+      - ./doomsday:/configvol
   postgres:
     restart: always
     image: postgres:11
@@ -90,4 +97,3 @@ volumes:
       type: "nfs"
       o: "addr=files,nolock,soft,rw"
       device: ":/mnt/raid1/backup"
-

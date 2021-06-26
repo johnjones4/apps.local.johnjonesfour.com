@@ -7,3 +7,6 @@
 [submodule "apps/grill-logger"]
 	path = apps/grill-logger
 	url = git@github.com:johnjones4/grill-logger
+[submodule "apps/doomsday-machine"]
+	path = apps/doomsday-machine
+	url = git@github.com:johnjones4/Doomsday-Machine

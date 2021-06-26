@@ -2,3 +2,5 @@ nginx/public
 secrets.env
 dbs.sql
 *secrets.env
+secrets.h
+./doomsday
