@@ -38,6 +38,7 @@ services:
       - CONFIG_FILE=/configvol/config.yml
     volumes: 
       - ./doomsday:/configvol
+      - mirrored:/data
   postgres:
     restart: always
     image: postgres:11
@@ -97,3 +98,8 @@ volumes:
       type: "nfs"
       o: "addr=files,nolock,soft,rw"
       device: ":/mnt/raid1/backup"
+  mirrored:
+    driver_opts:
+      type: "nfs"
+      o: "addr=files,nolock,soft,rw"
+      device: ":/mnt/raid1/mirrored"
