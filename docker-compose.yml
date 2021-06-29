@@ -31,14 +31,12 @@ services:
       - feedpage.env
     ports:
       - "8080:8080"
-  doomsday:
+  mbsync:
     restart: always
-    build: ./apps/doomsday-machine
-    environment: 
-      - CONFIG_FILE=/configvol/config.yml
+    build: ./apps/mbsync
     volumes: 
-      - ./doomsday:/configvol
-      - mirrored:/data
+      - mbsync:/data
+      - ./mbsyncconfig:/config
   postgres:
     restart: always
     image: postgres:11
@@ -98,8 +96,8 @@ volumes:
       type: "nfs"
       o: "addr=files,nolock,soft,rw"
       device: ":/mnt/raid1/backup"
-  mirrored:
+  mbsync:
     driver_opts:
       type: "nfs"
       o: "addr=files,nolock,soft,rw"
-      device: ":/mnt/raid1/mirrored"
+      device: ":/mnt/raid1/mail"
