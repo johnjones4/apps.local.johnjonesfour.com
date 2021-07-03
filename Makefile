@@ -4,17 +4,17 @@ build:
 	cp -R apps/weather/server/nginx/public nginx/public/weather
 	docker run -it --rm -v $(shell pwd)/apps/feedpage/client:/home/node/app -w /home/node/app node:lts npm run build
 	mv apps/feedpage/client/build nginx/public/feedpage
-	docker-compose build
+	docker-compose compose build
 	rm -rf nginx/public
 
 install:
 	docker run -it --rm -v $(shell pwd)/apps/feedpage/client:/home/node/app -w /home/node/app node:lts npm install
 
 start:
-	docker-compose up -d
+	docker-compose compose up -d
 
 db:
-	docker-compose up -d postgres
+	docker-compose compose up -d postgres
 	sleep 10
 	./make_dbs.sh > dbs.sql
 	docker cp ./dbs.sql appslocaljohnjonesfourcom_postgres_1:/dbs.sql
@@ -24,7 +24,7 @@ db:
 	docker exec -u postgres appslocaljohnjonesfourcom_postgres_1 psql -f /dbs.sql
 	docker exec -u postgres appslocaljohnjonesfourcom_postgres_1 psql weather -f /weather.sql
 	docker exec -u postgres appslocaljohnjonesfourcom_postgres_1 psql grill -f /grill.sql
-	docker-compose stop postgres
+	docker-compose compose stop postgres
 
 push-submodules:
 	cd apps/feedpage && git pull origin master
