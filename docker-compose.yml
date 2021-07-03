@@ -38,6 +38,8 @@ services:
       - /home/ubuntu/.config:/root/.config
       - /home/ubuntu/.gnupg:/root/.gnupg
       - /home/ubuntu/.password-store:/root/.password-store
+    ports:
+      - "1143:1143"
   mbsync:
     restart: always
     build: ./apps/mbsync
