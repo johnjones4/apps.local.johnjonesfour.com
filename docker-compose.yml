@@ -31,23 +31,15 @@ services:
       - feedpage.env
     ports:
       - "8080:8080"
-  protonbridge:
-    restart: always
-    build: ./apps/protonbridge
-    volumes: 
-      - /home/ubuntu/.config:/root/.config
-      - /home/ubuntu/.gnupg:/root/.gnupg
-      - /home/ubuntu/.password-store:/root/.password-store
-    ports:
-      - "1143:1143"
   mbsync:
     restart: always
     build: ./apps/mbsync
     volumes: 
       - mbsync:/data
       - ./mbsyncconfig:/config
-    depends_on: 
-      - protonbridge
+      - /home/ubuntu/.config:/root/.config
+      - /home/ubuntu/.gnupg:/root/.gnupg
+      - /home/ubuntu/.password-store:/root/.password-store
   postgres:
     restart: always
     image: postgres:11

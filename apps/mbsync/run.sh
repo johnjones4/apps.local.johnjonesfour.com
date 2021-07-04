@@ -2,6 +2,10 @@
 
 mkdir -p /data/gmail
 
+mkdir -p /data/proton
+
+/src/proton-bridge-1.8.7/proton-bridge --noninteractive &
+
 while :
 do
   mbsync -a -D -c /config/mbsyncrc
