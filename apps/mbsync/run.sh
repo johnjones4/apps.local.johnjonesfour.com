@@ -6,6 +6,8 @@ mkdir -p /data/proton
 
 /src/proton-bridge-1.8.7/proton-bridge --noninteractive &
 
+sleep 10
+
 while :
 do
   mbsync -a -D -c /config/mbsyncrc
