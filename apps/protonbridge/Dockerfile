@@ -8,7 +8,8 @@ RUN apt-get update -y && apt-get install -y \
   pkg-config \
   gcc \
   pass \
-  wget
+  wget \
+  git
 
 WORKDIR /usr/src
 
@@ -17,10 +18,9 @@ RUN tar zxvf go1.16.5.linux-$(dpkg --print-architecture).tar.gz
 
 WORKDIR /usr/src/app
 
-RUN wget https://github.com/ProtonMail/proton-bridge/archive/refs/tags/v1.8.7.tar.gz
-RUN tar zxvf v1.8.7.tar.gz
+RUN git clone https://github.com/johnjones4/proton-bridge.git
 
-WORKDIR /usr/src/app/proton-bridge-1.8.7
+WORKDIR /usr/src/app/proton-bridge
 
 RUN PATH=/usr/src/go/bin:$PATH make install-dev-dependencies
 RUN PATH=/usr/src/go/bin:$PATH make build-nogui
