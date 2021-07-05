@@ -10,6 +10,6 @@ sleep 10
 
 while :
 do
-  mbsync -a -D -c /config/mbsyncrc
+  mbsync protonmail -D -c /config/mbsyncrc
   sleep 86400
 done
