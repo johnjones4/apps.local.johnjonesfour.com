@@ -52,7 +52,7 @@ services:
       - postgres:/var/lib/postgresql/data
   nginx:
     restart: always
-    build: ./nginx
+    build: ./apps/nginx
     depends_on:
       - weather
       - feedpage

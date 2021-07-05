@@ -1,4 +1,4 @@
-nginx/public
+apps/nginx/public
 secrets.env
 dbs.sql
 *secrets.env
