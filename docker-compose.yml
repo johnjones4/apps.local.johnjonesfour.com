@@ -128,4 +128,4 @@ volumes:
     driver_opts:
       type: "nfs"
       o: "addr=files,nolock,soft,rw"
-      device: ":/mnt/raid1/githubmirror"
+      device: ":/mnt/raid1/lastpass"
