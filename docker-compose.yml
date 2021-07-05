@@ -84,7 +84,7 @@ services:
       - "8081:8080"
   backup:
     restart: always
-    build: ./backup
+    build: ./apps/backup
     depends_on:
       - postgres
     env_file:
