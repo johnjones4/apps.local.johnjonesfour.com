@@ -36,7 +36,7 @@ services:
     build: ./apps/mail
     volumes: 
       - mail:/data
-      - ./imapconfig:/root/.imap-backup
+      - ./mail:/config
       - /home/ubuntu/.config:/root/.config
       - /home/ubuntu/.gnupg:/root/.gnupg
       - /home/ubuntu/.password-store:/root/.password-store
