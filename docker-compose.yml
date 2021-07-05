@@ -40,6 +40,15 @@ services:
       - /home/ubuntu/.config:/root/.config
       - /home/ubuntu/.gnupg:/root/.gnupg
       - /home/ubuntu/.password-store:/root/.password-store
+  githubmirror:
+    restart: always
+    build: ./apps/githubmirror
+    volumes: 
+      - githubmirror:/data
+      - ./githubmirror:/config
+      - /home/ubuntu/.ssh:/ubuntu/.ssh
+    env_file:
+      - githubmirror_secrets.env
   postgres:
     restart: always
     image: postgres:11
@@ -104,3 +113,8 @@ volumes:
       type: "nfs"
       o: "addr=files,nolock,soft,rw"
       device: ":/mnt/raid1/mail"
+  githubmirror:
+    driver_opts:
+      type: "nfs"
+      o: "addr=files,nolock,soft,rw"
+      device: ":/mnt/raid1/githubmirror"
