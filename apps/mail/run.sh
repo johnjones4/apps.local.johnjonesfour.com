@@ -4,9 +4,9 @@ mkdir -p /data/gmail
 
 mkdir -p /data/proton
 
-# /src/proton-bridge-1.8.7/proton-bridge --noninteractive &
+/src/proton-bridge-1.8.7/proton-bridge --noninteractive &
 
-# sleep 10
+sleep 10
 
 while :
 do
