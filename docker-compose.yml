@@ -46,7 +46,7 @@ services:
     volumes: 
       - githubmirror:/data
       - ./githubmirror:/config
-      - /home/ubuntu/.ssh:/ubuntu/.ssh
+      - /home/ubuntu/.ssh:/root/.ssh
     env_file:
       - githubmirror_secrets.env
   postgres:
