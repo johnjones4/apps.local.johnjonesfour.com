@@ -10,6 +10,6 @@ sleep 10
 
 while :
 do
-  mbsync -D -c /config/mbsyncrc protonmail
+  imap-backup
   sleep 86400
 done

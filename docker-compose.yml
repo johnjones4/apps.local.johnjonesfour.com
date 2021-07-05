@@ -31,15 +31,12 @@ services:
       - feedpage.env
     ports:
       - "8080:8080"
-  mbsync:
+  mail:
     restart: always
-    build: ./apps/mbsync
+    build: ./apps/mail
     volumes: 
-      - mbsync:/data
-      - ./mbsyncconfig:/config
-      - /home/ubuntu/.config:/root/.config
-      - /home/ubuntu/.gnupg:/root/.gnupg
-      - /home/ubuntu/.password-store:/root/.password-store
+      - mail:/data
+      - ./imapconfig:/root/.imap-backup
   postgres:
     restart: always
     image: postgres:11
@@ -99,7 +96,7 @@ volumes:
       type: "nfs"
       o: "addr=files,nolock,soft,rw"
       device: ":/mnt/raid1/backup"
-  mbsync:
+  mail:
     driver_opts:
       type: "nfs"
       o: "addr=files,nolock,soft,rw"
