@@ -49,6 +49,12 @@ services:
       - /home/ubuntu/.ssh:/root/.ssh
     env_file:
       - githubmirror_secrets.env
+  lastpass:
+    restart: always
+    build: ./apps/lastpass
+    volumes: 
+      - lastpass:/data
+      - ./lastpass:/config
   postgres:
     restart: always
     image: postgres:11
@@ -114,6 +120,11 @@ volumes:
       o: "addr=files,nolock,soft,rw"
       device: ":/mnt/raid1/mail"
   githubmirror:
+    driver_opts:
+      type: "nfs"
+      o: "addr=files,nolock,soft,rw"
+      device: ":/mnt/raid1/githubmirror"
+  lastpass:
     driver_opts:
       type: "nfs"
       o: "addr=files,nolock,soft,rw"
