@@ -37,6 +37,9 @@ services:
     volumes: 
       - mail:/data
       - ./imapconfig:/root/.imap-backup
+      - /home/ubuntu/.config:/root/.config
+      - /home/ubuntu/.gnupg:/root/.gnupg
+      - /home/ubuntu/.password-store:/root/.password-store
   postgres:
     restart: always
     image: postgres:11
