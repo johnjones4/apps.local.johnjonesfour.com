@@ -107,6 +107,7 @@ services:
       - secrets.env
     volumes:
       - backup:/backup
+      - /home/ubuntu:/apps
 volumes: 
   postgres:
   backup:
