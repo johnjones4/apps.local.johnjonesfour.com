@@ -1,4 +1,4 @@
-FROM debian:buster
+FROM debian:stretch
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -9,9 +9,8 @@ RUN apt-get update && apt-get install -y \
   libsecret-1-dev \
   pkg-config \
   pass \
-  ruby-full \
-  rubygems \
-  build-essential
+  openssl \
+  offlineimap
 
 WORKDIR /src
 
@@ -25,12 +24,10 @@ WORKDIR /src/proton-bridge-1.8.7
 RUN PATH=/src/go/bin:$PATH make install-dev-dependencies
 RUN PATH=/src/go/bin:$PATH make build-nogui
 
-RUN gem install imap-backup
-
 WORKDIR /src/app
 
-COPY run.sh /run.sh
+COPY run.sh run.sh
 
 VOLUME [ "/config", "/data", "/root/.config", "/root/.gnupg", "/root/.password-store" ]
 
-CMD [ "/run.sh" ]
+CMD [ "./run.sh" ]
