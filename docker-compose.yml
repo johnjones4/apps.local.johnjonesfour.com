@@ -55,6 +55,12 @@ services:
     volumes: 
       - lastpass:/data
       - ./lastpass:/config
+  rclone:
+    restart: always
+    build: ./apps/rclone
+    volumes: 
+      - rclone:/data
+      - ./rclone:/root/.config/rclone
   postgres:
     restart: always
     image: postgres:11
@@ -130,3 +136,8 @@ volumes:
       type: "nfs"
       o: "addr=files,nolock,soft,rw"
       device: ":/mnt/raid1/lastpass"
+  rclone:
+    driver_opts:
+      type: "nfs"
+      o: "addr=files,nolock,soft,rw"
+      device: ":/mnt/raid1/cloudarchive"
