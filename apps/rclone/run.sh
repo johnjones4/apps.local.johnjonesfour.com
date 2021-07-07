@@ -3,7 +3,7 @@
 archive_source () {
   archivedir=/data/"$1"
   mkdir -p "$archivedir"
-  rclone sync "$1": "$archivedir" | curl -d @- http://jabba:8070/api/jobrun/rclone
+  rclone sync "$1": "$archivedir" |& curl -d @- http://jabba:8070/api/jobrun/rclone
 }
 
 archive_sources () {
