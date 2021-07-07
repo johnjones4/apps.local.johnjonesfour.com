@@ -19,7 +19,8 @@ ENV DATA_DIR="/data"
 WORKDIR /src/app
 
 COPY mirror.sh mirror.sh
+COPY run.sh run.sh
 
 VOLUME [ "/root/.ssh", "/data", "/config" ]
 
-CMD [ "./mirror.sh" ]
+CMD [ "./run.sh" ]

@@ -1,0 +1,26 @@
+[
+  {
+    "name": "lastpass",
+    "regexes": [
+      "[0-9][0-9]+"
+    ]
+  },
+  {
+    "name": "mail",
+    "regexes": [
+      "error"
+    ]
+  },
+  {
+    "name": "rclone",
+    "regexes": [
+      "error"
+    ]
+  },
+  {
+    "name": "github",
+    "regexes": [
+      "error"
+    ]
+  }
+]

@@ -10,6 +10,6 @@ sleep 10
 
 while :
 do
-  offlineimap -c /config/offlineimaprc
+  offlineimap -c /config/offlineimaprc | curl -d @- http://jabba:8070/api/jobrun/mail
   sleep 86400
 done

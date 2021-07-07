@@ -10,7 +10,8 @@ RUN apt-get update && apt-get install -y \
   pkg-config \
   pass \
   openssl \
-  offlineimap
+  offlineimap \
+  curl
 
 WORKDIR /src
 

@@ -22,14 +22,6 @@ backup_org () {
   done <<< "$repos"
 }
 
-backup () {
-  while IFS= read -r org; do
-    backup_org $org
-  done < "$ORG_FILE"
-}
-
-while :
-do
-  backup
-  sleep 86400
-done
+while IFS= read -r org; do
+  backup_org $org
+done < "$ORG_FILE"
