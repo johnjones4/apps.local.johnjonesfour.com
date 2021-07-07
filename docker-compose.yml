@@ -31,6 +31,19 @@ services:
       - feedpage.env
     ports:
       - "8080:8080"
+  jabba:
+    restart: always
+    build: ./apps/jabba/server
+    env_file:
+      - jabba.env
+      - postgres.env
+      - secrets.env
+      - jabba_secrets.env
+    ports:
+      - "8070:8070"
+    volumes: 
+      - ./jabba:/config
+      - jabba:/data
   mail:
     restart: always
     build: ./apps/mail
@@ -81,6 +94,7 @@ services:
       - feedpage
       - zabbix-web
       - grill
+      - jabba
     ports:
       - "80:80"
   zabbix-server:
@@ -118,6 +132,7 @@ services:
       - /home/ubuntu:/apps
 volumes: 
   postgres:
+  jabba:
   backup:
     driver_opts:
       type: "nfs"
