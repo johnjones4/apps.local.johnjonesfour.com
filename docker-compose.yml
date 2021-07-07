@@ -61,6 +61,8 @@ services:
     volumes: 
       - rclone:/data
       - ./rclone:/root/.config/rclone
+    env_file: 
+      - rclone_secrets.env
   postgres:
     restart: always
     image: postgres:11
