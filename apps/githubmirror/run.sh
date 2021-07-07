@@ -2,7 +2,8 @@
 
 while :
 do
-  output=$(./mirror.sh)
-  curl -X POST --data "$output" http://jabba:8070/api/jobrun/github
+  ./mirror.sh &> /tmp/log.txt
+  curl -X POST --data-binary /tmp/log.txt http://jabba:8070/api/jobrun/github
+  rm /tmp/log.txt
   sleep 86400
 done

@@ -10,7 +10,8 @@ sleep 10
 
 while :
 do
-  output=$(offlineimap -c /config/offlineimaprc)
-  curl -X POST --data "$output" http://jabba:8070/api/jobrun/mail
+  offlineimap -c /config/offlineimaprc &> /tmp/log.txt
+  curl -X POST --data-binary /tmp/log.txt http://jabba:8070/api/jobrun/mail
+  rm /tmp/log.txt
   sleep 86400
 done
