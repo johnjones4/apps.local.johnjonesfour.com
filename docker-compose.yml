@@ -39,6 +39,8 @@ services:
       - postgres.env
       - secrets.env
       - jabba_secrets.env
+    depends_on: 
+      - postgres
     ports:
       - "8070:8070"
     volumes: 
