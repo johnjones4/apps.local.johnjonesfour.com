@@ -22,5 +22,17 @@
     "regexes": [
       "error"
     ]
+  },
+  {
+    "name": "glacier",
+    "regexes": [
+      "error"
+    ]
+  },
+  {
+    "name": "backup",
+    "regexes": [
+      "error"
+    ]
   }
 ]
