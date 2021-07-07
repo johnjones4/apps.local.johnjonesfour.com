@@ -33,7 +33,7 @@ services:
       - "8080:8080"
   jabba:
     restart: always
-    build: ./apps/jabba/server
+    build: ./apps/jabba
     env_file:
       - jabba.env
       - postgres.env
