@@ -14,13 +14,15 @@
   {
     "name": "rclone",
     "regexes": [
-      "error"
+      "ERROR"
     ]
   },
   {
     "name": "github",
     "regexes": [
-      "error"
+      "error",
+      "fatal",
+      "gh auth login"
     ]
   },
   {
