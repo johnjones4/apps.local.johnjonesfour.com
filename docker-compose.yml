@@ -137,6 +137,28 @@ services:
     build: ./apps/dns-updater
     env_file: 
       - dns_updater_secrets.env
+  wiregaurd:
+    image: ghcr.io/linuxserver/wireguard
+    container_name: wireguard
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/New_York
+      - SERVERURL=house.johnjonesfour.com
+      - SERVERPORT=51820
+      - PEERS=john
+      - ALLOWEDIPS=0.0.0.0/0
+    volumes:
+      - ./wiregaurd:/config
+      - /lib/modules:/lib/modules
+    ports:
+      - 51820:51820/udp
+    sysctls:
+      - net.ipv4.conf.all.src_valid_mark=1
+    restart: unless-stopped
 volumes: 
   postgres:
   jabba:
