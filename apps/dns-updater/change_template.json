@@ -5,11 +5,11 @@
           "Action": "UPSERT",
           "ResourceRecordSet": {
               "Name": "house.johnjonesfour.com.",
-              "Type": "AAAA",
+              "Type": "A",
               "TTL": 300,
               "ResourceRecords": [
                   {
-                      "Value": "IPV6_ADDRESS"
+                      "Value": "IP_ADDRESS"
                   }
               ]
           }

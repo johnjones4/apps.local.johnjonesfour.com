@@ -2,13 +2,11 @@
 
 while :
 do
-  # IPV4_ADDRESS=$(dig +short A myip.opendns.com @resolver1.opendns.com)
-  IPV6_ADDRESS=$(dig +short AAAA myip.opendns.com @resolver1.opendns.com)
+  IP_ADDRESS=$(dig +short A myip.opendns.com @resolver1.opendns.com)
 
-  # echo $IPV4_ADDRESS
-  echo $IPV6_ADDRESS
+  echo $IP_ADDRESS
 
-  sed "s/IPV6_ADDRESS/$IPV6_ADDRESS/g" change_template.json > change_batch.json
+  sed "s/IP_ADDRESS/$IP_ADDRESS/g" change_template.json > change_batch.json
 
   export AWS_PAGER=""
 
