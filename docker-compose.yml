@@ -132,6 +132,11 @@ services:
     volumes:
       - backup:/backup
       - /home/ubuntu:/apps
+  dns-updater:
+    restart: always
+    build: ./apps/dns-updater
+    env_file: 
+      - dns_updater_secrets.env
 volumes: 
   postgres:
   jabba:

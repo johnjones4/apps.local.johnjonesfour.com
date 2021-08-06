@@ -28,7 +28,7 @@
   {
     "name": "glacier",
     "regexes": [
-      "error"
+      "ERROR"
     ]
   },
   {
