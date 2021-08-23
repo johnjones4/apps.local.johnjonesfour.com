@@ -13,5 +13,5 @@ do
     gzip /backup/"$d".sql
     echo "Done"
   done </dbs.txt
-  sleep 86400
+  sleep "$DELAY_DAILY"
 done

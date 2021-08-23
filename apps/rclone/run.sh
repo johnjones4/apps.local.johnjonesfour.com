@@ -19,5 +19,5 @@ archive_sources () {
 while :
 do
   archive_sources
-  sleep 86400
+  sleep "$DELAY_STD"
 done

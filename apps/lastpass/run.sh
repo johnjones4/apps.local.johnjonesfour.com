@@ -9,5 +9,5 @@ do
   else
     curl -X POST --data "ok: $status" http://jabba:8070/api/jobrun/lastpass
   fi
-  sleep 86400
+  sleep "$DELAY_STD"
 done
