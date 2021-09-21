@@ -104,6 +104,8 @@ services:
       - jabba
     ports:
       - "80:80"
+      - "443:443"
+      - "8100:8100"
   backup:
     restart: always
     build: ./apps/backup
