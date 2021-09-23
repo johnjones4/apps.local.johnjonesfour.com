@@ -149,7 +149,7 @@ services:
       - net.ipv4.conf.all.src_valid_mark=1
     restart: unless-stopped
   hal:
-    build: ./apps/hal
+    build: ./apps/hal/src
     restart: always
     environment: 
       - NER_MODEL_PATH=/usr/src/MITIE-0.7/MITIE-models/english/ner_model.dat
