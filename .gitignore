@@ -4,3 +4,9 @@ dbs.sql
 *secrets.env
 secrets.h
 ./doomsday
+githubmirror
+imapconfig
+lastpass
+mail
+rclone
+wireguard
