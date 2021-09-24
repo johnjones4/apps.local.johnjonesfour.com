@@ -1,4 +1,4 @@
-build:
+build-nginx:
 	rm -rf apps/nginx/public/
 	mkdir apps/nginx/public
 	cp -R apps/weather/server/nginx/public apps/nginx/public/weather
@@ -6,7 +6,7 @@ build:
 	docker run -it --rm -v $(shell pwd)/apps/feedpage/client:/home/node/app -w /home/node/app node:lts npm install
 	docker run -it --rm -v $(shell pwd)/apps/feedpage/client:/home/node/app -w /home/node/app node:lts npm run build
 	mv apps/feedpage/client/build apps/nginx/public/feedpage
-	docker-compose compose build
+	docker-compose compose build nginx
 	rm -rf apps/nginx/public
 
 install:
