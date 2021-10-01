@@ -147,12 +147,15 @@ services:
       - net.ipv4.conf.all.src_valid_mark=1
     restart: unless-stopped
   hal:
-    build: ./apps/hal/src
+    build: ./apps/hal/server
     restart: always
     environment: 
       - HTTP_SERVER=0.0.0.0:8200
+      - CONFIG_FILE_PATH=/config/config.json
     ports:
       - 8200:8200
+    volumes:
+      - ./hal:/config
 volumes: 
   postgres:
   jabba:
