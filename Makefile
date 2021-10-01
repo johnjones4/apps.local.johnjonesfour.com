@@ -5,8 +5,8 @@ build-nginx:
 	docker run -it --rm -v $(shell pwd)/apps/feedpage/client:/home/node/app -w /home/node/app node:lts npm install
 	docker run -it --rm -v $(shell pwd)/apps/feedpage/client:/home/node/app -w /home/node/app node:lts npm run build
 	mv apps/feedpage/client/build apps/nginx/public/feedpage
-	docker run -it --rm -v $(shell pwd)/apps/hal/webclient:/home/node/app -w /home/node/app node:lts npm install
-	docker run -it --rm -v $(shell pwd)/apps/hal/webclient:/home/node/app -w /home/node/app node:lts npm run build	
+	docker run -it --rm -v $(shell pwd)/apps/hal/client:/home/node/app -w /home/node/app node:lts npm install
+	docker run -it --rm -v $(shell pwd)/apps/hal/client:/home/node/app -w /home/node/app node:lts npm run build	
 	mv apps/hal/webclient/build apps/nginx/public/hal
 	docker-compose compose build nginx
 	rm -rf apps/nginx/public
