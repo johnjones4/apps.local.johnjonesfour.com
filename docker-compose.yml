@@ -36,6 +36,8 @@ services:
     build:
       context: ./apps/jabba
       dockerfile: server/Dockerfile
+    environment:
+      - HTTP_SERVER=8070
     env_file:
       - jabba.env
       - jabba_secrets.env
@@ -48,13 +50,15 @@ services:
     build:
       context: ./apps/jabba
       dockerfile: loghandler/Dockerfile
+    environment:
+      - HTTP_SERVER=8060
     env_file:
       - jabba.env
       - jabba_secrets.env
     depends_on: 
       - jabba-server
     ports:
-      - "8060:8070"
+      - "8060:8060"
     volumes: 
       - ./jabba:/config
   mail:
