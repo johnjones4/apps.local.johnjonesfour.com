@@ -68,6 +68,8 @@ services:
       - /home/ubuntu/.config:/root/.config
       - /home/ubuntu/.gnupg:/root/.gnupg
       - /home/ubuntu/.password-store:/root/.password-store
+    depends_on:
+      - jabba-loghandler
   githubmirror:
     restart: always
     build: ./apps/githubmirror
@@ -78,6 +80,8 @@ services:
     env_file:
       - githubmirror_secrets.env
       - shared.env
+    depends_on:
+      - jabba-loghandler
   lastpass:
     restart: always
     build: ./apps/lastpass
@@ -86,6 +90,8 @@ services:
       - ./lastpass:/config
     env_file: 
       - shared.env
+    depends_on:
+      - jabba-loghandler
   rclone:
     restart: always
     build: ./apps/rclone
@@ -95,6 +101,8 @@ services:
     env_file: 
       - rclone_secrets.env
       - shared.env
+    depends_on:
+      - jabba-loghandler
   postgres:
     restart: always
     image: postgres:11
@@ -112,7 +120,7 @@ services:
       - weather
       - feedpage
       - grill
-      - jabba
+      - jabba-server
       - hal
     ports:
       - "80:80"
