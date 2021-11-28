@@ -35,7 +35,7 @@ services:
     restart: always
     build:
       context: ./apps/jabba
-      dockerfile: server/Dockefile
+      dockerfile: server/Dockerfile
     env_file:
       - jabba.env
       - jabba_secrets.env
@@ -47,7 +47,7 @@ services:
     restart: always
     build:
       context: ./apps/jabba
-      dockerfile: loghandler/Dockefile
+      dockerfile: loghandler/Dockerfile
     env_file:
       - jabba.env
       - jabba_secrets.env
