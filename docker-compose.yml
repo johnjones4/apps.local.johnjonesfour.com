@@ -33,7 +33,7 @@ services:
       - "8080:8080"
   jabba-server:
     restart: always
-    build: ./apps/jabba
+    context: ./apps/jabba
     dockerfile: server/Dockefile
     env_file:
       - jabba.env
@@ -44,7 +44,7 @@ services:
       - "8070:8070"
   jabba-loghandler:
     restart: always
-    build: ./apps/jabba
+    context: ./apps/jabba
     dockerfile: loghandler/Dockefile
     env_file:
       - jabba.env
