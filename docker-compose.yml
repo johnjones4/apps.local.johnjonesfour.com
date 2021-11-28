@@ -31,21 +31,28 @@ services:
       - feedpage.env
     ports:
       - "8080:8080"
-  jabba:
+  jabba-server:
     restart: always
-    build: ./apps/jabba
+    build: ./apps/jabba/server
     env_file:
       - jabba.env
-      - postgres.env
-      - secrets.env
       - jabba_secrets.env
     depends_on: 
       - postgres
     ports:
       - "8070:8070"
+  jabba-loghandler:
+    restart: always
+    build: ./apps/jabba/loghandler
+    env_file:
+      - jabba.env
+      - jabba_secrets.env
+    depends_on: 
+      - jabba-server
+    ports:
+      - "8060:8070"
     volumes: 
       - ./jabba:/config
-      - jabba:/data
   mail:
     restart: always
     build: ./apps/mail
@@ -158,7 +165,6 @@ services:
       - ./hal:/config
 volumes: 
   postgres:
-  jabba:
   backup:
     driver_opts:
       type: "nfs"
