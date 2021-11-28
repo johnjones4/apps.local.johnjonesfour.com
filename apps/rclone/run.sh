@@ -4,7 +4,7 @@ archive_source () {
   archivedir=/data/"$1"
   mkdir -p "$archivedir"
   rclone sync "$1": "$archivedir" &> /tmp/log.txt
-  curl -X POST --data-binary @/tmp/log.txt http://jabba-loghandler:8060/api/job/rclone
+  curl -X POST --data-binary @/tmp/log.txt http://jabba-loghandler:8070/api/job/rclone
   rm /tmp/log.txt
 }
 
