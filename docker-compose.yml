@@ -37,7 +37,7 @@ services:
       context: ./apps/jabba
       dockerfile: server/Dockerfile
     environment:
-      - HTTP_SERVER=:8070
+      - HTTP_HOST=:8070
     env_file:
       - jabba.env
       - jabba_secrets.env
@@ -51,7 +51,7 @@ services:
       context: ./apps/jabba
       dockerfile: loghandler/Dockerfile
     environment:
-      - HTTP_SERVER=:8060
+      - HTTP_HOST=:8060
     env_file:
       - jabba.env
       - jabba_secrets.env
