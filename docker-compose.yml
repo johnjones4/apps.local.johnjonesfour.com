@@ -1,17 +1,5 @@
 version: "3.9"
 services:
-  grill:
-    restart: always
-    build: ./apps/grill-logger/server
-    env_file:
-      - grill.env
-      - postgres.env
-      - secrets.env
-      - grill_secrets.env
-    depends_on:
-      - postgres
-    ports:
-      - "8090:8090"
   weather:
     restart: always
     build: ./apps/weather/server/api
@@ -123,9 +111,8 @@ services:
     depends_on:
       - weather
       - feedpage
-      - grill
       - jabba-server
-      - hal
+      - jabba-loghandler
     ports:
       - "80:80"
     volumes:
@@ -169,16 +156,6 @@ services:
     sysctls:
       - net.ipv4.conf.all.src_valid_mark=1
     restart: unless-stopped
-  hal:
-    build: ./apps/hal/server
-    restart: always
-    environment: 
-      - HTTP_SERVER=0.0.0.0:8200
-      - CONFIG_FILE_PATH=/config/config.json
-    ports:
-      - 8200:8200
-    volumes:
-      - ./hal:/config
 volumes: 
   postgres:
   backup:
