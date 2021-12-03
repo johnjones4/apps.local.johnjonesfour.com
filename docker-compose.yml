@@ -54,8 +54,6 @@ services:
     build:
       context: ./apps/jabba
       dockerfile: poller/Dockerfile
-    environment:
-      - HTTP_HOST=:8060
     env_file:
       - jabba.env
       - jabba_secrets.env
