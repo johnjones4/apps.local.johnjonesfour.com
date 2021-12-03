@@ -1,0 +1,26 @@
+[
+  {
+    "id": "weather-api",
+    "url": "http://weather:3031/api"
+  },
+  {
+    "id": "jabba-server",
+    "url": "http://jabba-server:8070/api"
+  },
+  {
+    "id": "jabba-loghandler",
+    "url": "http://jabba-loghandler:8060/api"
+  },
+  {
+    "id": "nginx",
+    "url": "http://nginx"
+  },
+  {
+    "id": "plex",
+    "url": "http://plex:32400/web/index.html"
+  },
+  {
+    "id": "feedpage",
+    "url": "http://feedpage:8080"
+  }
+]

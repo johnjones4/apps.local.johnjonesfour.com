@@ -10,6 +10,7 @@ services:
       - weather_secrets.env
     depends_on:
       - postgres
+      - jabba-server
     ports:
       - "3031:3031"
   feedpage:
@@ -59,6 +60,9 @@ services:
       - jabba_secrets.env
     depends_on: 
       - jabba-server
+      - weather
+      - feedpage
+      - nginx
     volumes: 
       - ./jabba:/config
   mail:
