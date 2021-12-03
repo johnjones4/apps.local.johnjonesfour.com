@@ -35,8 +35,6 @@ push-submodules:
 	cd apps/feedpage && git pull origin master
 	cd apps/weather && git pull origin master
 	cd apps/jabba && git pull origin master
-	cd apps/grill-logger && git pull origin master
-	cd apps/hal && git pull origin master
 	git commit -am 'sync submodules'
 	git push origin master
 

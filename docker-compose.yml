@@ -49,6 +49,18 @@ services:
       - "8060:8060"
     volumes: 
       - ./jabba:/config
+  jabba-poller:
+    restart: always
+    build:
+      context: ./apps/jabba
+      dockerfile: poller/Dockerfile
+    environment:
+      - HTTP_HOST=:8060
+    env_file:
+      - jabba.env
+      - jabba_secrets.env
+    depends_on: 
+      - jabba-server
   mail:
     restart: always
     build: ./apps/mail
