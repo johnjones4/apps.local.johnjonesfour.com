@@ -59,6 +59,8 @@ services:
       - jabba_secrets.env
     depends_on: 
       - jabba-server
+    volumes: 
+      - ./jabba:/config
   mail:
     restart: always
     build: ./apps/mail
