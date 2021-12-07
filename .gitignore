@@ -9,4 +9,5 @@ imapconfig
 lastpass
 mail
 rclone
-wireguard
+wireguard/**
+wiregaurd/
