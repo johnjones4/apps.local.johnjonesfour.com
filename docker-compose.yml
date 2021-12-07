@@ -140,6 +140,7 @@ services:
     build: ./apps/backup
     depends_on:
       - postgres
+      - jabba-loghandler
     env_file:
       - postgres.env
       - secrets.env
