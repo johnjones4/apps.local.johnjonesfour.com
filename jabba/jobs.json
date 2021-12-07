@@ -36,5 +36,11 @@
     "regexes": [
       "error"
     ]
+  },
+  {
+    "name": "dns",
+    "regexes": [
+      "error"
+    ]
   }
 ]

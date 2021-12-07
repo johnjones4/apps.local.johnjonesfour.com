@@ -11,5 +11,7 @@
   "plex": "Plex",
   "rclone": "RClone Backup",
   "weather-api": "Weather API",
-  "weather-station": "Weather Station"
+  "weather-station": "Weather Station",
+  "dns": "DNS Updater",
+  "backup": "Docker Backup"
 }

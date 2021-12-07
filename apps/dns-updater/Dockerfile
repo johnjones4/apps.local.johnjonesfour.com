@@ -12,4 +12,4 @@ WORKDIR /usr/src/app
 
 COPY . .
 
-CMD ["./update_dns.sh"]
+CMD ["./run.sh"]

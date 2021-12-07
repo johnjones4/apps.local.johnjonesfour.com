@@ -152,6 +152,8 @@ services:
     build: ./apps/dns-updater
     env_file: 
       - dns_updater_secrets.env
+    depends_on:
+      - jabba-loghandler
   wireguard:
     image: ghcr.io/linuxserver/wireguard
     container_name: wireguard
