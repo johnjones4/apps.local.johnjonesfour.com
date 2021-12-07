@@ -19,8 +19,8 @@ backup_repo () {
     cd "$repo_path"
   fi
   git branch -r | grep -v '\->' | while read remote; do create_branch $remote; done
-  git fetch --all
-  git pull --all
+  git fetch -f --all
+  git pull -f --all
 }
 
 backup_org () {
