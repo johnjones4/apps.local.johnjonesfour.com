@@ -14,6 +14,8 @@ build:
 	
 	docker-compose compose build
 	rm -rf apps/nginx/public
+	docker-compose up -d
+	docker system prune -a
 
 install:
 	docker run -it --rm -v $(shell pwd)/apps/feedpage/client:/home/node/app -w /home/node/app node:lts npm install
