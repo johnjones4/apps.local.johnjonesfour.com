@@ -1,4 +1,4 @@
-build-nginx:
+build:
 	rm -rf apps/nginx/public/
 	mkdir apps/nginx/public
 	
@@ -12,7 +12,7 @@ build-nginx:
 	docker run -it --rm -v $(shell pwd)/apps/jabba/ui:/home/node/app -w /home/node/app node:lts npm run build	
 	mv apps/jabba/ui/build apps/nginx/public/jabba
 	
-	docker-compose compose build nginx
+	docker-compose compose build
 	rm -rf apps/nginx/public
 
 install:
