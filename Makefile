@@ -14,7 +14,9 @@ build:
 	
 	docker-compose compose build
 	rm -rf apps/nginx/public
-	docker-compose up -d
+	docker-compose compose up -d
+
+clean:
 	docker system prune -a
 
 install:

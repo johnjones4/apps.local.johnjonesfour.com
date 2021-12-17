@@ -21,6 +21,6 @@
   },
   {
     "id": "feedpage",
-    "url": "http://feedpage:8080"
+    "url": "http://feedpage:8080/api/feed"
   }
 ]
