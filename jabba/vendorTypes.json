@@ -13,5 +13,6 @@
   "weather-api": "Weather API",
   "weather-station": "Weather Station",
   "dns": "DNS Updater",
-  "backup": "Docker Backup"
+  "backup": "Docker Backup",
+  "raid": "RAID Array"
 }

@@ -2,7 +2,7 @@
 
 export PGPASSWORD="$POSTGRES_PASSWORD"
 
-tar zcvf /backup/apps.tar.gz /apps
+tar zcf /backup/apps.tar.gz /apps
 while read d; do
   echo "Backing up $d"
   rm /backup/"$d".sql
