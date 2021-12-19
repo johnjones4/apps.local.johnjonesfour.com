@@ -1,4 +1,4 @@
-build:
+build-nginx:
 	rm -rf apps/nginx/public/
 	mkdir apps/nginx/public
 	
@@ -11,10 +11,14 @@ build:
 	docker run -it --rm -v $(shell pwd)/apps/jabba/ui:/home/node/app -w /home/node/app node:lts npm install
 	docker run -it --rm -v $(shell pwd)/apps/jabba/ui:/home/node/app -w /home/node/app node:lts npm run build	
 	mv apps/jabba/ui/build apps/nginx/public/jabba
-	
-	docker-compose compose build
+
+	docker-compose compose build nginx
 	rm -rf apps/nginx/public
 	docker-compose compose up -d
+
+build: build-nginx
+	docker-compose compose build
+	docker-compose compose up -d		
 
 clean:
 	docker system prune -a
