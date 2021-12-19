@@ -1,4 +1,4 @@
-build-nginx:
+build:
 	rm -rf apps/nginx/public/
 	mkdir apps/nginx/public
 	
@@ -15,10 +15,6 @@ build-nginx:
 	docker-compose compose build nginx
 	rm -rf apps/nginx/public
 	docker-compose compose up -d
-
-build: build-nginx
-	docker-compose compose build
-	docker-compose compose up -d		
 
 clean:
 	docker system prune -a
