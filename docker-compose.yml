@@ -169,6 +169,7 @@ services:
       - SERVERPORT=51820
       - PEERS=john
       - ALLOWEDIPS=0.0.0.0/0
+      - PEERDNS=192.168.1.1,house.johnjonesfour.com
     volumes:
       - ./wiregaurd:/config
       - /lib/modules:/lib/modules
