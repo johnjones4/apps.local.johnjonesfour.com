@@ -2,7 +2,7 @@ build:
 	rm -rf apps/nginx/public/
 	mkdir apps/nginx/public
 	
-	cp -R apps/weather/server/nginx/public apps/nginx/public/weather
+	mkdir apps/nginx/public/weather
 
 	docker run -it --rm -v $(shell pwd)/apps/feedpage/client:/home/node/app -w /home/node/app node:lts npm install
 	docker run -it --rm -v $(shell pwd)/apps/feedpage/client:/home/node/app -w /home/node/app node:lts npm run build

@@ -2,7 +2,7 @@ version: "3.9"
 services:
   weather:
     restart: always
-    build: ./apps/weather/server/api
+    build: ./apps/weather/server
     env_file:
       - weather.env
       - postgres.env
