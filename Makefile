@@ -1,9 +1,11 @@
-build:
+build-nginx:
 	rm -rf apps/nginx/public/
 	mkdir apps/nginx/public
-	
-	mkdir apps/nginx/public/weather
 
+	docker run -it --rm -v $(shell pwd)/apps/weather/ui:/home/node/app -w /home/node/app node:lts npm install
+	docker run -it --rm -v $(shell pwd)/apps/weather/ui:/home/node/app -w /home/node/app node:lts npm run build
+	mv apps/weather/ui/build apps/nginx/public/weather
+	
 	docker run -it --rm -v $(shell pwd)/apps/feedpage/client:/home/node/app -w /home/node/app node:lts npm install
 	docker run -it --rm -v $(shell pwd)/apps/feedpage/client:/home/node/app -w /home/node/app node:lts npm run build
 	mv apps/feedpage/client/build apps/nginx/public/feedpage
@@ -12,8 +14,8 @@ build:
 	docker run -it --rm -v $(shell pwd)/apps/jabba/ui:/home/node/app -w /home/node/app node:lts npm run build	
 	mv apps/jabba/ui/build apps/nginx/public/jabba
 
-	docker-compose compose build nginx
-	rm -rf apps/nginx/public
+build-start:
+	docker-compose compose build
 	docker-compose compose up -d
 
 clean:
