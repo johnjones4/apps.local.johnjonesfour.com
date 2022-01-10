@@ -183,25 +183,25 @@ volumes:
   backup:
     driver_opts:
       type: "nfs"
-      o: "addr=files,nolock,soft,rw"
-      device: ":/mnt/raid1/backup"
+      o: "addr=files1,nolock,soft,rw"
+      device: ":/export/apps/backup"
   mail:
     driver_opts:
       type: "nfs"
-      o: "addr=files,nolock,soft,rw"
-      device: ":/mnt/raid1/mail"
+      o: "addr=files1,nolock,soft,rw"
+      device: ":/export/apps/mail"
   githubmirror:
     driver_opts:
       type: "nfs"
-      o: "addr=files,nolock,soft,rw"
-      device: ":/mnt/raid1/githubmirror"
+      o: "addr=files1,nolock,soft,rw"
+      device: ":/export/apps/githubmirror"
   lastpass:
     driver_opts:
       type: "nfs"
-      o: "addr=files,nolock,soft,rw"
-      device: ":/mnt/raid1/lastpass"
+      o: "addr=files1,nolock,soft,rw"
+      device: ":/export/apps/lastpass"
   rclone:
     driver_opts:
       type: "nfs"
-      o: "addr=files,nolock,soft,rw"
-      device: ":/mnt/raid1/cloudarchive"
+      o: "addr=files1,nolock,soft,rw"
+      device: ":/export/apps/cloudarchive"
