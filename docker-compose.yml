@@ -73,7 +73,7 @@ services:
     env_file: 
       - shared.env
     volumes: 
-      - mail1:/data
+      - mail2:/data
       - ./mail:/config
       - /home/ubuntu/.config:/root/.config
       - /home/ubuntu/.gnupg:/root/.gnupg
@@ -84,7 +84,7 @@ services:
     restart: always
     build: ./apps/githubmirror
     volumes: 
-      - githubmirror1:/data
+      - githubmirror2:/data
       - ./githubmirror:/config
       - /home/ubuntu/.ssh:/root/.ssh
     env_file:
@@ -96,7 +96,7 @@ services:
     restart: always
     build: ./apps/lastpass
     volumes: 
-      - lastpass1:/data
+      - lastpass2:/data
       - ./lastpass:/config
     env_file: 
       - shared.env
@@ -106,7 +106,7 @@ services:
     restart: always
     build: ./apps/rclone
     volumes: 
-      - rclone1:/data
+      - rclone2:/data
       - ./rclone:/root/.config/rclone
     env_file: 
       - rclone_secrets.env
@@ -146,7 +146,7 @@ services:
       - secrets.env
       - shared.env
     volumes:
-      - backup1:/backup
+      - backup2:/backup
       - /home/ubuntu:/apps
   dns-updater:
     restart: always
@@ -180,28 +180,28 @@ services:
     restart: unless-stopped
 volumes: 
   postgres:
-  backup1:
+  backup2:
     driver_opts:
       type: "nfs"
       o: "addr=files1,nolock,soft,rw"
-      device: ":/export/apps/backup"
-  mail1:
+      device: ":/mnt/apps/apps/backup"
+  mail2:
     driver_opts:
       type: "nfs"
       o: "addr=files1,nolock,soft,rw"
-      device: ":/export/apps/mail"
-  githubmirror1:
+      device: ":/mnt/apps/apps/mail"
+  githubmirror2:
     driver_opts:
       type: "nfs"
       o: "addr=files1,nolock,soft,rw"
-      device: ":/export/apps/githubmirror"
-  lastpass1:
+      device: ":/mnt/apps/apps/githubmirror"
+  lastpass2:
     driver_opts:
       type: "nfs"
       o: "addr=files1,nolock,soft,rw"
-      device: ":/export/apps/lastpass"
-  rclone1:
+      device: ":/mnt/apps/apps/lastpass"
+  rclone2:
     driver_opts:
       type: "nfs"
       o: "addr=files1,nolock,soft,rw"
-      device: ":/export/apps/cloudarchive"
+      device: ":/mnt/apps/apps/cloudarchive"
