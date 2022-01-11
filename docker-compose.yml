@@ -73,7 +73,7 @@ services:
     env_file: 
       - shared.env
     volumes: 
-      - mail:/data
+      - mail1:/data
       - ./mail:/config
       - /home/ubuntu/.config:/root/.config
       - /home/ubuntu/.gnupg:/root/.gnupg
@@ -84,7 +84,7 @@ services:
     restart: always
     build: ./apps/githubmirror
     volumes: 
-      - githubmirror:/data
+      - githubmirror1:/data
       - ./githubmirror:/config
       - /home/ubuntu/.ssh:/root/.ssh
     env_file:
@@ -96,7 +96,7 @@ services:
     restart: always
     build: ./apps/lastpass
     volumes: 
-      - lastpass:/data
+      - lastpass1:/data
       - ./lastpass:/config
     env_file: 
       - shared.env
@@ -106,7 +106,7 @@ services:
     restart: always
     build: ./apps/rclone
     volumes: 
-      - rclone:/data
+      - rclone1:/data
       - ./rclone:/root/.config/rclone
     env_file: 
       - rclone_secrets.env
@@ -146,7 +146,7 @@ services:
       - secrets.env
       - shared.env
     volumes:
-      - backup:/backup
+      - backup1:/backup
       - /home/ubuntu:/apps
   dns-updater:
     restart: always
@@ -180,27 +180,27 @@ services:
     restart: unless-stopped
 volumes: 
   postgres:
-  backup:
+  backup1:
     driver_opts:
       type: "nfs"
       o: "addr=files1,nolock,soft,rw"
       device: ":/export/apps/backup"
-  mail:
+  mail1:
     driver_opts:
       type: "nfs"
       o: "addr=files1,nolock,soft,rw"
       device: ":/export/apps/mail"
-  githubmirror:
+  githubmirror1:
     driver_opts:
       type: "nfs"
       o: "addr=files1,nolock,soft,rw"
       device: ":/export/apps/githubmirror"
-  lastpass:
+  lastpass1:
     driver_opts:
       type: "nfs"
       o: "addr=files1,nolock,soft,rw"
       device: ":/export/apps/lastpass"
-  rclone:
+  rclone1:
     driver_opts:
       type: "nfs"
       o: "addr=files1,nolock,soft,rw"
