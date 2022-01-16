@@ -14,5 +14,7 @@
   "weather-station": "Weather Station",
   "dns": "DNS Updater",
   "backup": "Docker Backup",
-  "raid": "RAID Array"
+  "raid": "RAID Array",
+  "disks": "NAS Disks",
+  "disk-backup": "Disk Backup"
 }

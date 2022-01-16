@@ -44,9 +44,14 @@
     ]
   },
   {
-    "name": "raid",
+    "name": "disk-backup",
     "regexes": [
-      "Failed Devices : [1-9][0-9]*"
+    ]
+  },
+  {
+    "name": "disks",
+    "regexes": [
+      "FAILED"
     ]
   }
 ]
