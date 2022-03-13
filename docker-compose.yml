@@ -73,7 +73,7 @@ services:
     env_file: 
       - shared.env
     volumes: 
-      - mail2:/data
+      - mail3:/data
       - ./mail:/config
       - /home/ubuntu/.config:/root/.config
       - /home/ubuntu/.gnupg:/root/.gnupg
@@ -84,7 +84,7 @@ services:
     restart: always
     build: ./apps/githubmirror
     volumes: 
-      - githubmirror2:/data
+      - githubmirror3:/data
       - ./githubmirror:/config
       - /home/ubuntu/.ssh:/root/.ssh
     env_file:
@@ -96,7 +96,7 @@ services:
     restart: always
     build: ./apps/lastpass
     volumes: 
-      - lastpass2:/data
+      - lastpass3:/data
       - ./lastpass:/config
     env_file: 
       - shared.env
@@ -106,7 +106,7 @@ services:
     restart: always
     build: ./apps/rclone
     volumes: 
-      - rclone2:/data
+      - rclone3:/data
       - ./rclone:/root/.config/rclone
     env_file: 
       - rclone_secrets.env
@@ -146,7 +146,7 @@ services:
       - secrets.env
       - shared.env
     volumes:
-      - backup2:/backup
+      - backup3:/backup
       - /home/ubuntu:/apps
   dns-updater:
     restart: always
@@ -180,28 +180,28 @@ services:
     restart: unless-stopped
 volumes: 
   postgres:
-  backup2:
+  backup3:
     driver_opts:
       type: "nfs"
-      o: "addr=files1,nolock,soft,rw"
-      device: ":/mnt/apps/apps/backup"
-  mail2:
+      o: "addr=files,nolock,soft,rw"
+      device: ":/volume1/Apps/backup"
+  mail3:
     driver_opts:
       type: "nfs"
-      o: "addr=files1,nolock,soft,rw"
-      device: ":/mnt/apps/apps/mail"
-  githubmirror2:
+      o: "addr=files,nolock,soft,rw"
+      device: ":/volume1/Apps/mail"
+  githubmirror3:
     driver_opts:
       type: "nfs"
-      o: "addr=files1,nolock,soft,rw"
-      device: ":/mnt/apps/apps/githubmirror"
-  lastpass2:
+      o: "addr=files,nolock,soft,rw"
+      device: ":/volume1/Apps/githubmirror"
+  lastpass3:
     driver_opts:
       type: "nfs"
-      o: "addr=files1,nolock,soft,rw"
-      device: ":/mnt/apps/apps/lastpass"
-  rclone2:
+      o: "addr=files,nolock,soft,rw"
+      device: ":/volume1/Apps/lastpass"
+  rclone3:
     driver_opts:
       type: "nfs"
-      o: "addr=files1,nolock,soft,rw"
-      device: ":/mnt/apps/apps/cloudarchive"
+      o: "addr=files,nolock,soft,rw"
+      device: ":/volume1/Apps/cloudarchive"
