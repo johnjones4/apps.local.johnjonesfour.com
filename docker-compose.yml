@@ -131,6 +131,7 @@ services:
       - feedpage
       - jabba-server
       - jabba-loghandler
+      - hal9000
     ports:
       - "80:80"
     volumes:
@@ -178,6 +179,33 @@ services:
     sysctls:
       - net.ipv4.conf.all.src_valid_mark=1
     restart: unless-stopped
+  mqtt2kasa:
+    build: ./apps/mqtt2kasa
+    restart: always
+    volumes:
+      - ./mqtt2kasa:/usr/src/app/data
+    depends_on:
+      - mosquitto
+  mosquitto:
+    image: eclipse-mosquitto:latest
+    restart: always
+    ports:
+      - 1883:1883
+      - 9001:9001
+    volumes: 
+      - ./mosquitto:/mosquitto/config
+  hal9000:
+    build: ./apps/hal9000/server
+    restart: always
+    depends_on:
+      - mosquitto
+    env_file:
+      - hal.env
+      - hal_secrets.env
+    volumes: 
+      - hal9000:/data
+    ports:
+      - 8050:8050
 volumes: 
   postgres:
   backup3:
@@ -205,3 +233,8 @@ volumes:
       type: "nfs"
       o: "addr=files,nolock,soft,rw"
       device: ":/volume1/Apps/cloudarchive"
+  hal9000:
+    driver_opts:
+      type: "nfs"
+      o: "addr=files,nolock,soft,rw"
+      device: ":/volume1/Apps/hal9000"

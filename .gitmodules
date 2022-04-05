@@ -7,3 +7,9 @@
 [submodule "apps/jabba"]
 	path = apps/jabba
 	url = git@github.com:johnjones4/Jabba.git
+[submodule "apps/hal9000"]
+	path = apps/hal9000
+	url = git@github.com:johnjones4/hal-9000.git
+[submodule "apps/mqtt2kasa"]
+	path = apps/mqtt2kasa
+	url = git@github.com:johnjones4/mqtt2kasa.git
