@@ -195,7 +195,7 @@ services:
     volumes: 
       - ./mosquitto:/mosquitto/config
   hal9000:
-    build: ./apps/hal9000/server
+    image: ghcr.io/johnjones4/hal9000:latest
     restart: always
     depends_on:
       - mosquitto
