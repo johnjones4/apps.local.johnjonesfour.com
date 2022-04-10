@@ -53,5 +53,16 @@
     "regexes": [
       "FAILED"
     ]
+  },
+  {
+    "name": "synology",
+    "regexes": [
+      "FAILED",
+      "failed",
+      "ERROR",
+      "error",
+      "UNHEALTHY",
+      "unhealthy"
+    ]
   }
 ]

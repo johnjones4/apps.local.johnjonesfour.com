@@ -199,6 +199,7 @@ services:
     restart: always
     depends_on:
       - mosquitto
+      - weather
     env_file:
       - hal.env
       - hal_secrets.env
