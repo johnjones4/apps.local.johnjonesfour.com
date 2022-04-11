@@ -1,8 +1,8 @@
 version: "3.9"
 services:
   weather:
+    image: ghcr.io/johnjones4/weather-ship-tango-delta:latest
     restart: always
-    build: ./apps/weather/server
     env_file:
       - weather.env
       - postgres.env
@@ -14,17 +14,15 @@ services:
     ports:
       - "3031:3031"
   feedpage:
+    image: ghcr.io/johnjones4/feedpage:latest
     restart: always
-    build: ./apps/feedpage/server
     env_file:
       - feedpage.env
     ports:
       - "8080:8080"
   jabba-server:
     restart: always
-    build:
-      context: ./apps/jabba
-      dockerfile: server/Dockerfile
+    image: ghcr.io/johnjones4/jabba-server:latest
     environment:
       - HTTP_HOST=:8070
     env_file:
@@ -38,9 +36,7 @@ services:
       - ./jabba:/config
   jabba-loghandler:
     restart: always
-    build:
-      context: ./apps/jabba
-      dockerfile: loghandler/Dockerfile
+    image: ghcr.io/johnjones4/jabba-loghandler:latest
     environment:
       - HTTP_HOST=:8060
     env_file:
@@ -54,9 +50,7 @@ services:
       - ./jabba:/config
   jabba-poller:
     restart: always
-    build:
-      context: ./apps/jabba
-      dockerfile: poller/Dockerfile
+    image: ghcr.io/johnjones4/jabba-poller:latest
     env_file:
       - jabba.env
       - jabba_secrets.env
@@ -180,7 +174,7 @@ services:
       - net.ipv4.conf.all.src_valid_mark=1
     restart: unless-stopped
   mqtt2kasa:
-    build: ./apps/mqtt2kasa
+    image: ghcr.io/johnjones4/mqtt2kasa:latest
     restart: always
     volumes:
       - ./mqtt2kasa:/usr/src/app/data
