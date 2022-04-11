@@ -63,7 +63,7 @@ services:
       - ./jabba:/config
   mail:
     restart: always
-    build: ./apps/mail
+    image: ghcr.io/johnjones4/backup-mail:latest
     env_file: 
       - shared.env
     volumes: 
@@ -76,7 +76,7 @@ services:
       - jabba-loghandler
   githubmirror:
     restart: always
-    build: ./apps/githubmirror
+    image: ghcr.io/johnjones4/backup-githubmirror:latest
     volumes: 
       - githubmirror3:/data
       - ./githubmirror:/config
@@ -88,7 +88,7 @@ services:
       - jabba-loghandler
   lastpass:
     restart: always
-    build: ./apps/lastpass
+    image: ghcr.io/johnjones4/backup-lastpass:latest
     volumes: 
       - lastpass3:/data
       - ./lastpass:/config
@@ -98,7 +98,7 @@ services:
       - jabba-loghandler
   rclone:
     restart: always
-    build: ./apps/rclone
+    image: ghcr.io/johnjones4/backup-rclone:latest
     volumes: 
       - rclone3:/data
       - ./rclone:/root/.config/rclone
@@ -132,7 +132,7 @@ services:
       - /etc/letsencrypt/live:/certificates
   backup:
     restart: always
-    build: ./apps/backup
+    image: ghcr.io/johnjones4/backup-backup:latest
     depends_on:
       - postgres
       - jabba-loghandler
@@ -145,7 +145,7 @@ services:
       - /home/ubuntu:/apps
   dns-updater:
     restart: always
-    build: ./apps/dns-updater
+    image: ghcr.io/johnjones4/dns-updater:latest
     env_file: 
       - dns_updater_secrets.env
     depends_on:

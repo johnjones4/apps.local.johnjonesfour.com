@@ -1,4 +1,0 @@
-weather
-zabbix
-grill
-jabba
