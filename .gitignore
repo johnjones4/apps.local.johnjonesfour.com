@@ -9,3 +9,4 @@ mail/
 rclone/
 wiregaurd/
 mqtt2kasa/
+config/jabba/emailAlerts.json

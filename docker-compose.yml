@@ -24,7 +24,7 @@ services:
     ports:
       - "8080:8080"
   hal9000:
-    image: ghcr.io/johnjones4/hal9000:latest
+    image: ghcr.io/johnjones4/hal-9000:latest
     restart: always
     depends_on:
       - mosquitto
