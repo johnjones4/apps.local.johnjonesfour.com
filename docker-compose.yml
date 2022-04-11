@@ -119,7 +119,7 @@ services:
       - postgres:/var/lib/postgresql/data
   nginx:
     restart: always
-    build: ./apps/nginx
+    image: ghcr.io/johnjones4/nginx:latest
     depends_on:
       - weather
       - feedpage
