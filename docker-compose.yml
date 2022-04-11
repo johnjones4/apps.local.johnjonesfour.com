@@ -1,13 +1,16 @@
 version: "3.9"
-services:
+services: 
+  ################################################################################
+  # Projects 
+  ################################################################################
   weather:
     image: ghcr.io/johnjones4/weather-ship-tango-delta:latest
     restart: always
     env_file:
-      - weather.env
-      - postgres.env
-      - secrets.env
-      - weather_secrets.env
+      - ./config/env/weather.env
+      - ./config/env/postgres.env
+      - ./config/env/secrets.env
+      - ./config/env/weather_secrets.env
     depends_on:
       - postgres
       - jabba-server
@@ -17,58 +20,79 @@ services:
     image: ghcr.io/johnjones4/feedpage:latest
     restart: always
     env_file:
-      - feedpage.env
+      - ./config/env/feedpage.env
     ports:
       - "8080:8080"
+  hal9000:
+    image: ghcr.io/johnjones4/hal9000:latest
+    restart: always
+    depends_on:
+      - mosquitto
+      - weather
+    env_file:
+      - ./config/env/hal.env
+      - ./config/env/hal_secrets.env
+    volumes: 
+      - hal9000:/data
+    ports:
+      - 8050:8050
+
+  ################################################################################
+  # Monitoring 
+  ################################################################################
   jabba-server:
     restart: always
     image: ghcr.io/johnjones4/jabba-server:latest
     environment:
       - HTTP_HOST=:8070
     env_file:
-      - jabba.env
-      - jabba_secrets.env
+      - ./config/env/jabba.env
+      - ./config/env/jabba_secrets.env
     depends_on: 
       - postgres
     ports:
       - "8070:8070"
     volumes:
-      - ./jabba:/config
+      - ./config/jabba:/config
   jabba-loghandler:
     restart: always
     image: ghcr.io/johnjones4/jabba-loghandler:latest
     environment:
       - HTTP_HOST=:8060
     env_file:
-      - jabba.env
-      - jabba_secrets.env
+      - ./config/env/jabba.env
+      - ./config/env/jabba_secrets.env
     depends_on: 
       - jabba-server
     ports:
       - "8060:8060"
     volumes: 
-      - ./jabba:/config
+      - ./config/jabba:/config
   jabba-poller:
     restart: always
     image: ghcr.io/johnjones4/jabba-poller:latest
     env_file:
-      - jabba.env
-      - jabba_secrets.env
+      - ./config/env/jabba.env
+      - ./config/env/jabba_secrets.env
     depends_on: 
       - jabba-server
       - weather
       - feedpage
       - nginx
     volumes: 
-      - ./jabba:/config
+      - ./config/jabba:/config
+
+  ################################################################################
+  # Backup 
+  ################################################################################
   mail:
     restart: always
     image: ghcr.io/johnjones4/backup-mail:latest
     env_file: 
-      - shared.env
+      - ./config/env/shared.env
     volumes: 
       - mail3:/data
-      - ./mail:/config
+      - ./config/mail:/config
       - /home/ubuntu/.config:/root/.config
       - /home/ubuntu/.gnupg:/root/.gnupg
       - /home/ubuntu/.password-store:/root/.password-store
@@ -79,11 +103,11 @@ services:
     image: ghcr.io/johnjones4/backup-githubmirror:latest
     volumes: 
       - githubmirror3:/data
-      - ./githubmirror:/config
+      - ./config/githubmirror:/config
       - /home/ubuntu/.ssh:/root/.ssh
     env_file:
-      - githubmirror_secrets.env
-      - shared.env
+      - ./config/env/githubmirror_secrets.env
+      - ./config/env/shared.env
     depends_on:
       - jabba-loghandler
   lastpass:
@@ -91,9 +115,9 @@ services:
     image: ghcr.io/johnjones4/backup-lastpass:latest
     volumes: 
       - lastpass3:/data
-      - ./lastpass:/config
+      - ./config/lastpass:/config
     env_file: 
-      - shared.env
+      - ./config/env/shared.env
     depends_on:
       - jabba-loghandler
   rclone:
@@ -101,18 +125,35 @@ services:
     image: ghcr.io/johnjones4/backup-rclone:latest
     volumes: 
       - rclone3:/data
-      - ./rclone:/root/.config/rclone
+      - ./config/rclone:/root/.config/rclone
     env_file: 
-      - rclone_secrets.env
-      - shared.env
+      - ./config/env/rclone_secrets.env
+      - ./config/env/shared.env
     depends_on:
       - jabba-loghandler
+  backup:
+    restart: always
+    image: ghcr.io/johnjones4/backup-backup:latest
+    depends_on:
+      - postgres
+      - jabba-loghandler
+    env_file:
+      - ./config/env/postgres.env
+      - ./config/env/secrets.env
+      - ./config/env/shared.env
+    volumes:
+      - backup3:/backup
+      - /home/ubuntu:/apps
+
+  ################################################################################
+  # Infra 
+  ################################################################################
   postgres:
     restart: always
     image: postgres:11
     env_file:
-      - postgres.env
-      - secrets.env
+      - ./config/env/postgres.env
+      - ./config/env/secrets.env
     ports:
       - "5432:5432"
     volumes:
@@ -130,24 +171,11 @@ services:
       - "80:80"
     volumes:
       - /etc/letsencrypt/live:/certificates
-  backup:
-    restart: always
-    image: ghcr.io/johnjones4/backup-backup:latest
-    depends_on:
-      - postgres
-      - jabba-loghandler
-    env_file:
-      - postgres.env
-      - secrets.env
-      - shared.env
-    volumes:
-      - backup3:/backup
-      - /home/ubuntu:/apps
   dns-updater:
     restart: always
     image: ghcr.io/johnjones4/dns-updater:latest
     env_file: 
-      - dns_updater_secrets.env
+      - ./config/env/dns_updater_secrets.env
     depends_on:
       - jabba-loghandler
   wireguard:
@@ -156,17 +184,10 @@ services:
     cap_add:
       - NET_ADMIN
       - SYS_MODULE
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=America/New_York
-      - SERVERURL=house.johnjonesfour.com
-      - SERVERPORT=51820
-      - PEERS=john
-      - ALLOWEDIPS=0.0.0.0/0
-      - PEERDNS=192.168.1.1,house.johnjonesfour.com
+    env_file: 
+      - ./config/env/wireguard.env
     volumes:
-      - ./wiregaurd:/config
+      - ./config/wiregaurd:/config
       - /lib/modules:/lib/modules
     ports:
       - 51820:51820/udp
@@ -177,7 +198,7 @@ services:
     image: ghcr.io/johnjones4/mqtt2kasa:latest
     restart: always
     volumes:
-      - ./mqtt2kasa:/usr/src/app/data
+      - ./config/mqtt2kasa:/usr/src/app/data
     depends_on:
       - mosquitto
   mosquitto:
@@ -187,20 +208,8 @@ services:
       - 1883:1883
       - 9001:9001
     volumes: 
-      - ./mosquitto:/mosquitto/config
-  hal9000:
-    image: ghcr.io/johnjones4/hal9000:latest
-    restart: always
-    depends_on:
-      - mosquitto
-      - weather
-    env_file:
-      - hal.env
-      - hal_secrets.env
-    volumes: 
-      - hal9000:/data
-    ports:
-      - 8050:8050
+      - ./config/mosquitto:/mosquitto/config
+  
 volumes: 
   postgres:
   backup3:

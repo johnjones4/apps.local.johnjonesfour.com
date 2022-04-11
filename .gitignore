@@ -1,14 +1,11 @@
-apps/nginx/public
 ./secrets.env
 dbs.sql
 *secrets.env
 secrets.h
-./doomsday/**
 githubmirror/
 imapconfig/
 lastpass/
 mail/
 rclone/
 wiregaurd/
-jabba/
 mqtt2kasa/
