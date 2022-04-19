@@ -29,6 +29,7 @@ services:
     depends_on:
       - mosquitto
       - weather
+      - postgres
     env_file:
       - ./config/env/hal.env
       - ./config/env/hal_secrets.env
